@@ -142,7 +142,15 @@
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Enemies\HealthBlock.cpp" />
+    <ClCompile Include="src\Enemies\Enemies.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Players\Players.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Enemies\HealthBlock.h" />
+    <ClInclude Include="src\Enemies\Enemies.h" />
+    <ClInclude Include="src\Players\Players.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
