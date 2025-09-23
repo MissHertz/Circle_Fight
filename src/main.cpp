@@ -103,6 +103,8 @@ int main()
 		ClearBackground(BLACK);
 		Vector2 playerCentre = { playerXPosition, playerYPosition };
 		DrawWall(100, 100, 20, 10, ORANGE);
+		DrawWall(1, 350, 300, 10, ORANGE);
+
 
 		// Player
 		DrawPlayer();
