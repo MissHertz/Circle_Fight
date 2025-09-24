@@ -84,8 +84,7 @@ void DrawPlayer()
 	DrawCircle(playerXPosition, playerYPosition, drawPlayerSize, playerColor);
 }
 
-// All rectangles 
-
+// ALL RECTANGLES (walls and columns)
 // Section 1: left side
 bool DrawWall_1()
 {
