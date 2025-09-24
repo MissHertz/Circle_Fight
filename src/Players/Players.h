@@ -17,10 +17,10 @@ public:
 	float windowHalfHeight = windowHeight / 2;
 
 	// Global Player Variables
-	float playerXPosition = windowHalfWidth - 50;
-	float playerYPosition = windowHalfHeight;
-	float player2XPosition = windowHalfWidth + 50;
-	float player2YPosition = windowHalfHeight;
+	float playerXPosition = windowHalfWidth - 870;
+	float playerYPosition = windowHalfHeight - 27;
+	float player2XPosition = windowHalfWidth - 870;
+	float player2YPosition = windowHalfHeight + 27;
 
 	Color playerColor{ WHITE };
 	Color player2color{ WHITE };

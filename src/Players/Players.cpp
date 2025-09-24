@@ -1,4 +1,6 @@
 #include "Players.h"
+#include "Rock_throw/Rock_throw.h"
+#include "Sword_swing/Sword_swing.h"
 
 void Player::DrawPlayer(Color inPlayerColor)
 {
@@ -16,9 +18,9 @@ void Player::DrawPlayer2(Color inPlayer2Color)
 
 void Player::PlayerController()
 {
-	float playerSpeed = 300.f;
-	float increasedplayerSpeed = 1.5f;
-	float reducedplayerSpeed = 0.4f;
+	float playerSpeed = 280.f;
+	float increasedplayerSpeed = 1.4f;
+	float reducedplayerSpeed = 0.5f;
 
 	if (IsKeyDown(KEY_A))
 	{
