@@ -136,13 +136,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="lib\libgcc_s_dw2-1.dll" />
     <None Include="lib\libstdc++-6.dll" />
     <None Include="main.code-workspace" />
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Enemies\Enemies.cpp" />
+    <ClCompile Include="src\Environment\Environment.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Players\Players.cpp" />
+    <ClCompile Include="src\Players\Rock_throw\Rock_throw.cpp" />
+    <ClCompile Include="src\Players\Sword_swing\Sword_swing.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Enemies\Enemies.h" />
+    <ClInclude Include="src\Environment\Environment.h" />
+    <ClInclude Include="src\Players\Players.h" />
+    <ClInclude Include="src\Players\Rock_throw\Rock_throw.h" />
+    <ClInclude Include="src\Players\Sword_swing\Sword_swing.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\raylib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
