@@ -93,13 +93,13 @@ bool DrawWall_1()
 
 	DrawRectangleRec(wall_1, wallColor);
 
-	if (CheckCollisionCircleRec(playerCentre, 20.f, wall_1))
+	if (CheckCollisionCircleRec(playerCentre, 20.f, wall_1)) //Checks for collision 
 	{
 		//std::cout << "Collision detected!!" << std::endl; 
-		checkWall_1 = true;
+		checkWall_1 = true; //Sets variable to true, is used in the player movement if-sentence
 		return true;
 	}
-	checkWall_1 = false;
+	checkWall_1 = false; //Sets variable to false so the code wont continue running on true
 	return false;
 }
 bool DrawWall_2()
