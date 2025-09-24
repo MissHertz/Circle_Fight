@@ -19,6 +19,8 @@ float wallWidth;
 Rectangle myRectangle;
 Color wallColor; 
 
+
+// Draws a wall 
 void DrawWall(int inWallXPosition, int inWallYPosition, int inWallHeight, int inWallWidth, Color inWallColor)
 {
 	wallXPosition = inWallXPosition;
@@ -34,13 +36,13 @@ void DrawWall(int inWallXPosition, int inWallYPosition, int inWallHeight, int in
 // Creating player character
 void DrawPlayer()
 {
-	float drawnPlayerSize = 35.f;
+	float drawPlayerSize = 35.f;
 	Color playerColor = { 102, 0, 102, 255 };
-	DrawCircle(playerXPosition, playerYPosition, drawnPlayerSize, playerColor);
+	DrawCircle(playerXPosition, playerYPosition, drawPlayerSize, playerColor);
 
 }
 
-
+// Checks for collision between player and wall
 bool isPlayerCollidingWithWall(Vector2 centre) {
 	if (CheckCollisionCircleRec(centre, 35.0f, myRectangle)) {
 		return true;
