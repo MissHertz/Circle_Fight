@@ -17,9 +17,9 @@ public:
 	float windowHalfHeight = windowHeight / 2;
 
 	// Global Player Variables
-	float playerXPosition = windowHalfWidth + 50;
+	float playerXPosition = windowHalfWidth - 50;
 	float playerYPosition = windowHalfHeight;
-	float player2XPosition = windowHalfWidth - 50;
+	float player2XPosition = windowHalfWidth + 50;
 	float player2YPosition = windowHalfHeight;
 
 	Color playerColor{ WHITE };
