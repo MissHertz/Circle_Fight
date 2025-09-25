@@ -143,19 +143,15 @@
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Rock_Slinger\Rock_Slinger_Class.cpp" />
     <ClCompile Include="src\Enemies\Enemies.cpp" />
     <ClCompile Include="src\Environment\Environment.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Players\Players.cpp" />
-    <ClCompile Include="src\Swordsman\Swordsman_Class.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Rock_Slinger\Rock_Slinger_Class.h" />
     <ClInclude Include="src\Enemies\Enemies.h" />
     <ClInclude Include="src\Environment\Environment.h" />
     <ClInclude Include="src\Players\Players.h" />
-    <ClInclude Include="src\Swordsman\Swordsman_Class.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\raylib.lib" />

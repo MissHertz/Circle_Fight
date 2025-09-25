@@ -34,12 +34,6 @@
     <ClCompile Include="src\Enemies\Enemies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rock_Slinger_Class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Swordsman\Swordsman_Class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Players\Players.h">
@@ -49,12 +43,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Enemies\Enemies.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock_Slinger_Class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Swordsman\Swordsman_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

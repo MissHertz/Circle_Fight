@@ -1,20 +1,24 @@
 #include "Players.h"
 
-void Player::DrawPlayer(Color inPlayerColor)
+//		Constructors	//
+void Players::DrawRock_Slinger(Color inPlayerColor)
 {
-	float playerSize = 20.f;
-	playerColor = inPlayerColor;
-	DrawCircle(playerXPosition, playerYPosition, playerSize, playerColor);
+	float rock_SlingerSize = 20.f;
+	rock_SlingerColor = inPlayerColor;
+	DrawCircle(rock_SlingerXposition, rock_SlingerYposition, rock_SlingerSize, rock_SlingerColor);
 }
 
-void Player::DrawPlayer2(Color inPlayer2Color)
+void Players::DrawSwordsman(Color inPlayer2Color)
 {
-	float player2size = 30.f;
-	player2color = inPlayer2Color;
-	DrawCircle(player2XPosition, player2YPosition, player2size, player2color);
+	float swordsmanSize = 30.f;
+	swordsmanColor = inPlayer2Color;
+	DrawCircle(swordsmanXposition, swordsmanYposition, swordsmanSize, swordsmanColor);
 }
 
-void Player::PlayerController()
+//		Functions		//
+
+//	Rock Slinger //
+void Players::rock_SlingerController()
 {
 	float playerSpeed = 280.f;
 	float increasedplayerSpeed = 1.4f;
@@ -24,17 +28,17 @@ void Player::PlayerController()
 	{
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
-			playerXPosition -= playerSpeed * increasedplayerSpeed * GetFrameTime();
+			rock_SlingerXposition -= playerSpeed * increasedplayerSpeed * GetFrameTime();
 		}
 
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
-			playerXPosition -= playerSpeed * reducedplayerSpeed * GetFrameTime();
+			rock_SlingerXposition -= playerSpeed * reducedplayerSpeed * GetFrameTime();
 		}
 
 		else
 		{
-			playerXPosition -= playerSpeed * GetFrameTime();
+			rock_SlingerXposition -= playerSpeed * GetFrameTime();
 		}
 	}
 
@@ -42,15 +46,15 @@ void Player::PlayerController()
 	{
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
-			playerXPosition += playerSpeed * increasedplayerSpeed * GetFrameTime();
+			rock_SlingerXposition += playerSpeed * increasedplayerSpeed * GetFrameTime();
 		}
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
-			playerXPosition += playerSpeed * reducedplayerSpeed * GetFrameTime();
+			rock_SlingerXposition += playerSpeed * reducedplayerSpeed * GetFrameTime();
 		}
 		else
 		{
-			playerXPosition += playerSpeed * GetFrameTime();
+			rock_SlingerXposition += playerSpeed * GetFrameTime();
 		}
 	}
 
@@ -58,17 +62,17 @@ void Player::PlayerController()
 	{
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
-			playerYPosition -= playerSpeed * increasedplayerSpeed * GetFrameTime();
+			rock_SlingerYposition -= playerSpeed * increasedplayerSpeed * GetFrameTime();
 		}
 
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
-			playerYPosition -= playerSpeed * reducedplayerSpeed * GetFrameTime();
+			rock_SlingerYposition -= playerSpeed * reducedplayerSpeed * GetFrameTime();
 		}
 
 		else
 		{
-			playerYPosition -= playerSpeed * GetFrameTime();
+			rock_SlingerYposition -= playerSpeed * GetFrameTime();
 		}
 	}
 
@@ -76,20 +80,21 @@ void Player::PlayerController()
 	{
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
-			playerYPosition += playerSpeed * increasedplayerSpeed * GetFrameTime();
+			rock_SlingerYposition += playerSpeed * increasedplayerSpeed * GetFrameTime();
 		}
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
-			playerYPosition += playerSpeed * reducedplayerSpeed * GetFrameTime();
+			rock_SlingerYposition += playerSpeed * reducedplayerSpeed * GetFrameTime();
 		}
 		else
 		{
-			playerYPosition += playerSpeed * GetFrameTime();
+			rock_SlingerYposition += playerSpeed * GetFrameTime();
 		}
 	}
 }
 
-void Player::Player2Controller()
+//	Swordsman	//
+void Players::swordsmanController()
 {
 	float player2Speed = 200.f;
 	float increasedplayer2Speed = 1.6f;
@@ -99,17 +104,17 @@ void Player::Player2Controller()
 	{
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
-			player2XPosition -= player2Speed * increasedplayer2Speed * GetFrameTime();
+			swordsmanXposition -= player2Speed * increasedplayer2Speed * GetFrameTime();
 		}
 
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
-			player2XPosition -= player2Speed * reducedplayer2Speed * GetFrameTime();
+			swordsmanXposition -= player2Speed * reducedplayer2Speed * GetFrameTime();
 		}
 
 		else
 		{
-			player2XPosition -= player2Speed * GetFrameTime();
+			swordsmanXposition -= player2Speed * GetFrameTime();
 		}
 	}
 
@@ -117,15 +122,15 @@ void Player::Player2Controller()
 	{
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
-			player2XPosition += player2Speed * increasedplayer2Speed * GetFrameTime();
+			swordsmanXposition += player2Speed * increasedplayer2Speed * GetFrameTime();
 		}
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
-			player2XPosition += player2Speed * reducedplayer2Speed * GetFrameTime();
+			swordsmanXposition += player2Speed * reducedplayer2Speed * GetFrameTime();
 		}
 		else
 		{
-			player2XPosition += player2Speed * GetFrameTime();
+			swordsmanXposition += player2Speed * GetFrameTime();
 		}
 	}
 
@@ -133,17 +138,17 @@ void Player::Player2Controller()
 	{
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
-			player2YPosition -= player2Speed * increasedplayer2Speed * GetFrameTime();
+			swordsmanYposition -= player2Speed * increasedplayer2Speed * GetFrameTime();
 		}
 
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
-			player2YPosition -= player2Speed * reducedplayer2Speed * GetFrameTime();
+			swordsmanYposition -= player2Speed * reducedplayer2Speed * GetFrameTime();
 		}
 
 		else
 		{
-			player2YPosition -= player2Speed * GetFrameTime();
+			swordsmanYposition -= player2Speed * GetFrameTime();
 		}
 	}
 
@@ -151,15 +156,15 @@ void Player::Player2Controller()
 	{
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
-			player2YPosition += player2Speed * increasedplayer2Speed * GetFrameTime();
+			swordsmanYposition += player2Speed * increasedplayer2Speed * GetFrameTime();
 		}
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
-			player2YPosition += player2Speed * reducedplayer2Speed * GetFrameTime();
+			swordsmanYposition += player2Speed * reducedplayer2Speed * GetFrameTime();
 		}
 		else
 		{
-			player2YPosition += player2Speed * GetFrameTime();
+			swordsmanYposition += player2Speed * GetFrameTime();
 		}
 	}
 }

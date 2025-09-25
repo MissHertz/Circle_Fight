@@ -6,7 +6,9 @@
 #include <raylib.h>
 #include <string>
 #include <vector>
-#include "Players/Players.h"
+#include "../Circle_Fight/src/Players/Players.h"
+#include "../Circle_Fight/src/Enemies/Enemies.h"
+#include "../Circle_Fight/src/Environment/Environment.h"
 
 // Global Variables
 float windowWidth = 1800;
@@ -20,8 +22,8 @@ int main()
 
 	SetTargetFPS(60);
 
-	Player Player1;
-	Player Player2;
+	Players rock_Slinger;
+	Players swordsman;
 
 	while (!WindowShouldClose())
 	{
@@ -31,13 +33,13 @@ int main()
 
 		DrawFPS(10, 10);
 
-		Player1.DrawPlayer(YELLOW);
+		rock_Slinger.DrawRock_Slinger(YELLOW);
 
-		Player2.DrawPlayer2(RED);
+		swordsman.DrawSwordsman(RED);
 
-		Player1.PlayerController();
+		rock_Slinger.rock_SlingerController();
 
-		Player2.Player2Controller();
+		swordsman.swordsmanController();
 
 		EndDrawing();
 	}

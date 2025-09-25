@@ -6,7 +6,7 @@
 #include <cmath>
 #include <vector>
 
-class Player
+class Players
 {
 public:
 
@@ -17,20 +17,21 @@ public:
 	float windowHalfHeight = windowHeight / 2;
 
 	// Global Player Variables
-	float playerXPosition = windowHalfWidth - 870;
-	float playerYPosition = windowHalfHeight - 27;
-	float player2XPosition = windowHalfWidth - 870;
-	float player2YPosition = windowHalfHeight + 27;
-
-	Color playerColor{ WHITE };
-	Color player2color{ WHITE };
+	float rock_SlingerXposition = windowHalfWidth - 870;
+	float rock_SlingerYposition = windowHalfHeight - 27;
+	float rock_SlingerSize = 20.f;
+	Color rock_SlingerColor{ WHITE };
+	float swordsmanXposition = windowHalfWidth - 870;
+	float swordsmanYposition = windowHalfHeight + 27;
+	float swordsmanSize = 30.f;
+	Color swordsmanColor{ WHITE };
 
 	//constructor
-	void DrawPlayer(Color inPlayerColor);
-	void DrawPlayer2(Color inPlayer2Color);
+	void DrawRock_Slinger(Color inPlayerColor);
+	void DrawSwordsman(Color inPlayer2Color);
 
 	//functions
-	void PlayerController();
+	void rock_SlingerController();
 
 	//bool IsPlayerInBounds()
 	//{
@@ -41,7 +42,7 @@ public:
 	//	return withinXBounds && withinYBounds;
 	//}
 
-	void Player2Controller();
+	void swordsmanController();
 
 	//	bool IsPlayer2InBounds()
 	//	{
