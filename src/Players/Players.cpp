@@ -1,7 +1,6 @@
 #include "Players.h"
 #include "../Circle_Fight/src/Environment/Environment.h"
 
-
 void Player::DrawPlayer(Color inPlayerColor)
 {
 	float playerSize = 20.f;
@@ -195,28 +194,55 @@ void Player::PlayerController(Environment& ble)
 	}
 }
 
-void Player::Player2Controller()
+void Player::Player2Controller(Environment& ble)
 {
 	float player2Speed = 200.f;
 	float increasedplayer2Speed = 1.6f;
 	float reducedplayer2Speed = 0.7f;
+	float collision2Fix = 16.f;
 
 	if (IsKeyDown(KEY_LEFT))
 	{
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
 			player2XPosition -= player2Speed * increasedplayer2Speed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				player2XPosition += player2Speed * increasedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
 			player2XPosition -= player2Speed * reducedplayer2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2XPosition += player2Speed * reducedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 
 		else
 		{
 			player2XPosition -= player2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2XPosition += player2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
+		player2Centre = { player2XPosition, player2YPosition };
 	}
 
 	if (IsKeyDown(KEY_RIGHT))
@@ -224,15 +250,41 @@ void Player::Player2Controller()
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
 			player2XPosition += player2Speed * increasedplayer2Speed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				player2XPosition -= player2Speed * increasedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
 			player2XPosition += player2Speed * reducedplayer2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2XPosition -= player2Speed * reducedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 		else
 		{
 			player2XPosition += player2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2XPosition -= player2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
+		player2Centre = { player2XPosition, player2YPosition };
 	}
 
 	if (IsKeyDown(KEY_UP))
@@ -240,17 +292,43 @@ void Player::Player2Controller()
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
 			player2YPosition -= player2Speed * increasedplayer2Speed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				player2YPosition += player2Speed * increasedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
 			player2YPosition -= player2Speed * reducedplayer2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2YPosition += player2Speed * reducedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 
 		else
 		{
 			player2YPosition -= player2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2YPosition += player2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
+		player2Centre = { player2XPosition, player2YPosition };
 	}
 
 	if (IsKeyDown(KEY_DOWN))
@@ -258,14 +336,40 @@ void Player::Player2Controller()
 		if (IsKeyDown(KEY_RIGHT_SHIFT))
 		{
 			player2YPosition += player2Speed * increasedplayer2Speed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				player2YPosition -= player2Speed * increasedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 		if (IsKeyDown(KEY_RIGHT_ALT))
 		{
 			player2YPosition += player2Speed * reducedplayer2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2YPosition -= player2Speed * reducedplayer2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
 		else
 		{
 			player2YPosition += player2Speed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				player2YPosition -= player2Speed * GetFrameTime() + collision2Fix;
+			}
 		}
+		player2Centre = { player2XPosition, player2YPosition };
 	}
 }

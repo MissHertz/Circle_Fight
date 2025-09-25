@@ -12,7 +12,6 @@ class Player
 {
 public:
 
-
 	// Global Variables
 	float windowWidth = 1800;
 	float windowHeight = 950;
@@ -24,9 +23,11 @@ public:
 	float playerYPosition = windowHalfHeight - 27;
 	float player2XPosition = windowHalfWidth - 870;
 	float player2YPosition = windowHalfHeight + 27;
-	Vector2 player1Centre; 
+	Vector2 player1Centre;
+	Vector2 player2Centre;
 	float playerSpeed = 150.f;
 	float collisionFix = 10.f;
+	float collision2Fix = 16.f;
 
 	Color playerColor{ WHITE };
 	Color player2color{ WHITE };
@@ -47,7 +48,7 @@ public:
 	//	return withinXBounds && withinYBounds;
 	//}
 
-	void Player2Controller();
+	void Player2Controller(Environment& ble);
 
 	//	bool IsPlayer2InBounds()
 	//	{

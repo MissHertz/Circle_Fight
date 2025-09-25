@@ -23,23 +23,23 @@ int main()
 
 	Environment Env;
 	Player Player1;
-	//Player Player2;
+	Player Player2;
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
-		
+
 		ClearBackground(BLACK);
 
 		DrawFPS(10, 10);
 
 		Player1.DrawPlayer(YELLOW);
 
-		//Player2.DrawPlayer2(RED);
+		Player2.DrawPlayer2(RED);
 
 		Player1.PlayerController(Env);
 
-		//Player2.Player2Controller();
+		Player2.Player2Controller(Env);
 
 		// Draw Walls and columns
 		Env.DrawWall_1(Player1.player1Centre);
@@ -69,7 +69,6 @@ int main()
 		Env.DrawColumn_3(Player1.player1Centre);
 		Env.DrawColumn_4(Player1.player1Centre);
 		Env.DrawColumn_5(Player1.player1Centre);
-
 
 		EndDrawing();
 	}
