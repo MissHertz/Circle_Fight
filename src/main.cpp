@@ -45,9 +45,9 @@ int main()
 
                     // Enemy damages player on collision
                     if (IsColliding(player, enemy))
-                    
+
                         player.TakeDamage(0.5);
-                    
+
                 }
             }
         }
@@ -68,8 +68,8 @@ int main()
         {
             gameOver = true;
         }
-    
-    else
+
+        else
         {
             // Restart game when ENTER is pressed
             if (IsKeyPressed(KEY_ENTER))
@@ -119,8 +119,8 @@ int main()
 
         EndDrawing();
 
-
-   CloseWindow();
-   return 0;
-}
+    }
+        CloseWindow();
+        return 0;
+ }
 
