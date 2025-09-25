@@ -29,9 +29,21 @@ int main()
 	InitWindow(windowWidth, windowHeight, "Circle Fight!");
 
 	SetTargetFPS(60);
+	// Create player
+	Player player(900, 475, 100, 20.0f);
+
+	// Create multiple enemies
+	std::vector<Enemy> enemies;
+	enemies.emplace_back(200, 200, 50, 20.0f);
+	enemies.emplace_back(500, 300, 50, 20.0f);
+	enemies.emplace_back(1400, 600, 50, 20.0f);
+	enemies.emplace_back(1600, 600, 50, 20.0f);
+	enemies.emplace_back(1800, 600, 50, 20.0f);
+
+	bool gameOver = false;
 
 	Environment Env;
-	Player Player1;
+	Player Player1{};
 	//Player Player2;
 
 	while (!WindowShouldClose())
@@ -163,4 +175,5 @@ int main()
 	}
 
 	CloseWindow();
-}
+	return 0;
+}   
