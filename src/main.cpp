@@ -46,7 +46,7 @@ int main()
                     // Enemy damages player on collision
                     if (IsColliding(player, enemy))
                     {
-                        player.TakeDamage(1);
+                        player.TakeDamage(0.1);
                     }
                 }
             }

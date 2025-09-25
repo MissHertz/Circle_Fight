@@ -37,7 +37,7 @@ public:
     void Player2Controller();
 
     // Health management
-    void TakeDamage(int dmg);
+    void TakeDamage(float dmg);
     void Heal(int hp);
     bool IsAlive();
 };
