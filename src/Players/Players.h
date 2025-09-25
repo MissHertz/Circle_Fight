@@ -23,8 +23,8 @@ public:
     Color playerColor{ WHITE };
 
     // Health system
-    int health = 200;
-    int maxHealth = 200;
+    int health = 400;
+    int maxHealth = 400;
 
     // Constructor
     Player(float x, float y, int hp, float r);
@@ -37,7 +37,7 @@ public:
     void Player2Controller();
 
     // Health management
-    void TakeDamage(int dmg);
+    void TakeDamage(float dmg);
     void Heal(int hp);
     bool IsAlive();
 };

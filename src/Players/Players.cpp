@@ -128,7 +128,7 @@ void Player::Player2Controller()
 }
 
 // Damage functions
-void Player::TakeDamage(int dmg)
+void Player::TakeDamage(float dmg)
 {
     health -= dmg;
     if (health < 0) health = 0;
