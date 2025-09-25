@@ -143,12 +143,14 @@
     <None Include="src\Enemies\.gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\HealthBlock\HealthBlock.cpp" />
     <ClCompile Include="src\Enemies\Enemies.cpp" />
     <ClCompile Include="src\Environment\Environment.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Players\Players.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\HealthBlock\HealthBlock.h" />
     <ClInclude Include="src\Enemies\Enemies.h" />
     <ClInclude Include="src\Environment\Environment.h" />
     <ClInclude Include="src\Players\Players.h" />
