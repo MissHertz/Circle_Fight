@@ -24,16 +24,19 @@ public:
 	float playerYPosition = windowHalfHeight - 27;
 	float player2XPosition = windowHalfWidth - 870;
 	float player2YPosition = windowHalfHeight + 27;
-	Vector2 player1Centre; 
+	Vector2 playerCentre; 
 	float playerSpeed = 150.f;
 	float collisionFix = 10.f;
-
+	int health = 50;
+	int maxHealth = 50;
+	float radius = 20.0f;
 	Color playerColor{ WHITE };
 	Color player2color{ WHITE };
 
 	//constructor
 	void DrawPlayer(Color inPlayerColor);
 	void DrawPlayer2(Color inPlayer2Color);
+	Player(float x, float y, int hp, float r);
 
 	//functions
 	void PlayerController(Environment& ble);
@@ -58,4 +61,7 @@ public:
 	//		return within2XBounds && within2YBounds;
 	//	}
 	//};
+	void TakeDamage(float dmg);
+	void Heal(int hp);
+	bool IsAlive();
 };

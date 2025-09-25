@@ -43,7 +43,7 @@ int main()
 	bool gameOver = false;
 
 	Environment Env;
-	Player Player1{};
+	
 	//Player Player2;
 
 	while (!WindowShouldClose())
@@ -51,7 +51,7 @@ int main()
 		if (!gameOver)
 		{
 			// --- Update ---
-			player.PlayerController(); // WASD controls
+			void PlayerController(Environment& ble); // WASD controls
 
 			for (auto& enemy : enemies)
 			{
@@ -108,42 +108,42 @@ int main()
 
 		DrawFPS(10, 10);
 
-		Player1.DrawPlayer(YELLOW);
+		player.DrawPlayer(YELLOW);
 
 		//Player2.DrawPlayer2(RED);
 
-		Player1.PlayerController(Env);
+		player.PlayerController(Env);
 
 		//Player2.Player2Controller();
 
 		// Draw Walls and columns
-		Env.DrawWall_1(Player1.player1Centre);
-		Env.DrawWall_2(Player1.player1Centre);
-		Env.DrawWall_3(Player1.player1Centre);
-		Env.DrawWall_4(Player1.player1Centre);
-		Env.DrawWall_5(Player1.player1Centre);
-		Env.DrawWall_6(Player1.player1Centre);
-		Env.DrawWall_7(Player1.player1Centre);
-		Env.DrawWall_8(Player1.player1Centre);
-		Env.DrawWall_9(Player1.player1Centre);
-		Env.DrawWall_10(Player1.player1Centre);
-		Env.DrawWall_11(Player1.player1Centre);
-		Env.DrawWall_12(Player1.player1Centre);
-		Env.DrawWall_13(Player1.player1Centre);
-		Env.DrawWall_14(Player1.player1Centre);
-		Env.DrawWall_15(Player1.player1Centre);
-		Env.DrawWall_16(Player1.player1Centre);
-		Env.DrawWall_17(Player1.player1Centre);
-		Env.DrawWall_18(Player1.player1Centre);
-		Env.DrawWall_19(Player1.player1Centre);
-		Env.DrawWall_20(Player1.player1Centre);
-		Env.DrawWall_21(Player1.player1Centre);
+		Env.DrawWall_1(player.playerCentre);
+		Env.DrawWall_2(player.playerCentre);
+		Env.DrawWall_3(player.playerCentre);
+		Env.DrawWall_4(player.playerCentre);
+		Env.DrawWall_5(player.playerCentre);
+		Env.DrawWall_6(player.playerCentre);
+		Env.DrawWall_7(player.playerCentre);
+		Env.DrawWall_8(player.playerCentre);
+		Env.DrawWall_9(player.playerCentre);
+		Env.DrawWall_10(player.playerCentre);
+		Env.DrawWall_11(player.playerCentre);
+		Env.DrawWall_12(player.playerCentre);
+		Env.DrawWall_13(player.playerCentre);
+		Env.DrawWall_14(player.playerCentre);
+		Env.DrawWall_15(player.playerCentre);
+		Env.DrawWall_16(player.playerCentre);
+		Env.DrawWall_17(player.playerCentre);
+		Env.DrawWall_18(player.playerCentre);
+		Env.DrawWall_19(player.playerCentre);
+		Env.DrawWall_20(player.playerCentre);
+		Env.DrawWall_21(player.playerCentre);
 
-		Env.DrawColumn_1(Player1.player1Centre);
-		Env.DrawColumn_2(Player1.player1Centre);
-		Env.DrawColumn_3(Player1.player1Centre);
-		Env.DrawColumn_4(Player1.player1Centre);
-		Env.DrawColumn_5(Player1.player1Centre);
+		Env.DrawColumn_1(player.playerCentre);
+		Env.DrawColumn_2(player.playerCentre);
+		Env.DrawColumn_3(player.playerCentre);
+		Env.DrawColumn_4(player.playerCentre);
+		Env.DrawColumn_5(player.playerCentre);
 		
         if (!gameOver)
         {
