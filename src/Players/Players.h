@@ -23,8 +23,8 @@ public:
     Color playerColor{ WHITE };
 
     // Health system
-    int health = 100;
-    int maxHealth = 100;
+    int health = 200;
+    int maxHealth = 200;
 
     // Constructor
     Player(float x, float y, int hp, float r);

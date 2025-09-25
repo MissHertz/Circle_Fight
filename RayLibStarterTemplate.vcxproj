@@ -143,7 +143,6 @@
     <None Include="src\Enemies\.gitignore" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\HealthBlock\HealthBlock.cpp" />
     <ClCompile Include="src\Enemies\Enemies.cpp" />
     <ClCompile Include="src\Environment\Environment.cpp" />
     <ClCompile Include="src\main.cpp" />
