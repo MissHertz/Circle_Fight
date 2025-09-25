@@ -26,7 +26,7 @@ public:
     // Drawing
     void DrawEnemy(Color inEnemyColor);
 
-    // Update (movement/AI placeholder)
+    // Enemy chase
     void UpdateEnemy(float targetX, float targetY);
 
     // Health management
