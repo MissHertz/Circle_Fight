@@ -72,10 +72,26 @@ void Player::PlayerController(Environment& ble)
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
 			playerXPosition += playerSpeed * increasedplayerSpeed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				playerXPosition -= playerSpeed * increasedplayerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
 			playerXPosition += playerSpeed * reducedplayerSpeed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				playerXPosition -= playerSpeed * reducedplayerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 		else
 		{
@@ -98,11 +114,26 @@ void Player::PlayerController(Environment& ble)
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
 			playerYPosition -= playerSpeed * increasedplayerSpeed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				playerYPosition += playerSpeed * increasedplayerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
-
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
 			playerYPosition -= playerSpeed * reducedplayerSpeed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				playerYPosition += playerSpeed * reducedplayerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 
 		else
@@ -126,10 +157,26 @@ void Player::PlayerController(Environment& ble)
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
 			playerYPosition += playerSpeed * increasedplayerSpeed * GetFrameTime();
+			if ((ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true || ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true
+				|| ble.checkWall_9 == true || ble.checkWall_10 == true || ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true || ble.checkWall_16 == true
+				|| ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true || ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true))
+			{
+				playerYPosition -= playerSpeed * increasedplayerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 		if (IsKeyDown(KEY_LEFT_CONTROL))
 		{
 			playerYPosition += playerSpeed * reducedplayerSpeed * GetFrameTime();
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
+				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true
+				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true
+				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
+				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
+				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				playerYPosition -= playerSpeed * reducedplayerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 		else
 		{
@@ -141,7 +188,7 @@ void Player::PlayerController(Environment& ble)
 				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
 				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
 			{
-				playerXPosition -= playerSpeed * GetFrameTime() + collisionFix;
+				playerYPosition -= playerSpeed * GetFrameTime() + collisionFix;
 			}
 		}
 		player1Centre = { playerXPosition, playerYPosition };

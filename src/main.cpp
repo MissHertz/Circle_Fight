@@ -25,33 +25,6 @@ int main()
 	Player Player1;
 	//Player Player2;
 
-	/*Environment Wall2;
-	Environment Wall3;
-	Environment Wall4;
-	Environment Wall5;
-	Environment Wall6;
-	Environment Wall7;
-	Environment Wall8;
-	Environment Wall9;
-	Environment Wall10;
-	Environment Wall11;
-	Environment Wall12;
-	Environment Wall13;
-	Environment Wall14;
-	Environment Wall15;
-	Environment Wall16;
-	Environment Wall17;
-	Environment Wall18;
-	Environment Wall19;
-	Environment Wall20;
-	Environment Wall21;
-
-	Environment Column1; 
-	Environment Column2; 
-	Environment Column3; 
-	Environment Column4; 
-	Environment Column5; */
-
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -90,6 +63,12 @@ int main()
 		Env.DrawWall_19(Player1.player1Centre);
 		Env.DrawWall_20(Player1.player1Centre);
 		Env.DrawWall_21(Player1.player1Centre);
+
+		Env.DrawColumn_1(Player1.player1Centre);
+		Env.DrawColumn_2(Player1.player1Centre);
+		Env.DrawColumn_3(Player1.player1Centre);
+		Env.DrawColumn_4(Player1.player1Centre);
+		Env.DrawColumn_5(Player1.player1Centre);
 
 
 		EndDrawing();
