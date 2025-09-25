@@ -8,37 +8,37 @@ class Environment
 public: 
 	
 	// FUNCTIONS
-	bool DrawWall_1();
-	bool DrawWall_2();
-	bool DrawWall_3();
-	bool DrawWall_4();
-	bool DrawWall_5();
-	bool DrawWall_6();
-	bool DrawWall_7();
-	bool DrawWall_8();
-	bool DrawWall_9();
-	bool DrawWall_10();
-	bool DrawWall_11();
-	bool DrawWall_12();
-	bool DrawWall_13();
-	bool DrawWall_14();
-	bool DrawWall_15();
-	bool DrawWall_16();
-	bool DrawWall_17();
-	bool DrawWall_18();
-	bool DrawWall_19();
-	bool DrawWall_20();
-	bool DrawWall_21();
+	bool DrawWall_1(Vector2 la);
+	bool DrawWall_2(Vector2 la);
+	bool DrawWall_3(Vector2 la);
+	bool DrawWall_4(Vector2 la);
+	bool DrawWall_5(Vector2 la);
+	bool DrawWall_6(Vector2 la);
+	bool DrawWall_7(Vector2 la);
+	bool DrawWall_8(Vector2 la);
+	bool DrawWall_9(Vector2 la);
+	bool DrawWall_10(Vector2 la);
+	bool DrawWall_11(Vector2 la);
+	bool DrawWall_12(Vector2 la);
+	bool DrawWall_13(Vector2 la);
+	bool DrawWall_14(Vector2 la);
+	bool DrawWall_15(Vector2 la);
+	bool DrawWall_16(Vector2 la);
+	bool DrawWall_17(Vector2 la);
+	bool DrawWall_18(Vector2 la);
+	bool DrawWall_19(Vector2 la);
+	bool DrawWall_20(Vector2 la);
+	bool DrawWall_21(Vector2 la);
 	
-	bool DrawColumn_1();
-	bool DrawColumn_2();
-	bool DrawColumn_3();
-	bool DrawColumn_4();
-	bool DrawColumn_5();
+	bool DrawColumn_1(Vector2 la);
+	bool DrawColumn_2(Vector2 la);
+	bool DrawColumn_3(Vector2 la);
+	bool DrawColumn_4(Vector2 la);
+	bool DrawColumn_5(Vector2 la);
 	
 	// GLOBAL VARIABLES
 	// Wall variables
-	static bool checkWall_1;
+	bool checkWall_1;
 	bool checkWall_2;
 	 bool checkWall_3;
 	 bool checkWall_4;

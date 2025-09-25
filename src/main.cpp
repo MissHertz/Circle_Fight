@@ -69,27 +69,27 @@ int main()
 		//Player2.Player2Controller();
 
 		// Draw Walls and columns
-		Env.DrawWall_1();
-		Env.DrawWall_2();
-		/*Wall3.DrawWall_3();
-		Wall4.DrawWall_4();
-		Wall5.DrawWall_5();
-		Wall6.DrawWall_6();
-		Wall7.DrawWall_7();
-		Wall8.DrawWall_8();
-		Wall9.DrawWall_9();
-		Wall10.DrawWall_10();
-		Wall11.DrawWall_11();
-		Wall12.DrawWall_12();
-		Wall13.DrawWall_13();
-		Wall14.DrawWall_14();
-		Wall15.DrawWall_15();
-		Wall16.DrawWall_16();
-		Wall17.DrawWall_17();
-		Wall18.DrawWall_18();
-		Wall19.DrawWall_19();
-		Wall20.DrawWall_20();
-		Wall21.DrawWall_21();*/
+		Env.DrawWall_1(Player1.player1Centre);
+		Env.DrawWall_2(Player1.player1Centre);
+		Env.DrawWall_3(Player1.player1Centre);
+		Env.DrawWall_4(Player1.player1Centre);
+		Env.DrawWall_5(Player1.player1Centre);
+		Env.DrawWall_6(Player1.player1Centre);
+		Env.DrawWall_7(Player1.player1Centre);
+		Env.DrawWall_8(Player1.player1Centre);
+		Env.DrawWall_9(Player1.player1Centre);
+		Env.DrawWall_10(Player1.player1Centre);
+		Env.DrawWall_11(Player1.player1Centre);
+		Env.DrawWall_12(Player1.player1Centre);
+		Env.DrawWall_13(Player1.player1Centre);
+		Env.DrawWall_14(Player1.player1Centre);
+		Env.DrawWall_15(Player1.player1Centre);
+		Env.DrawWall_16(Player1.player1Centre);
+		Env.DrawWall_17(Player1.player1Centre);
+		Env.DrawWall_18(Player1.player1Centre);
+		Env.DrawWall_19(Player1.player1Centre);
+		Env.DrawWall_20(Player1.player1Centre);
+		Env.DrawWall_21(Player1.player1Centre);
 
 
 		EndDrawing();

@@ -5,7 +5,8 @@
 #include <algorithm>
 #include <cmath>
 #include <vector>
-#include "../Circle_Fight/src/Environment/Environment.h"
+
+class Environment;
 
 class Player
 {
@@ -23,7 +24,7 @@ public:
 	float playerYPosition = windowHalfHeight - 27;
 	float player2XPosition = windowHalfWidth - 870;
 	float player2YPosition = windowHalfHeight + 27;
-	static Vector2 player1Centre; 
+	Vector2 player1Centre; 
 	float playerSpeed = 150.f;
 	float collisionFix = 10.f;
 
@@ -35,7 +36,7 @@ public:
 	void DrawPlayer2(Color inPlayer2Color);
 
 	//functions
-	void PlayerController(Environment ble);
+	void PlayerController(Environment& ble);
 
 	//bool IsPlayerInBounds()
 	//{
