@@ -19,12 +19,10 @@
     <None Include="Makefile" />
     <None Include="lib\libgcc_s_dw2-1.dll" />
     <None Include="lib\libstdc++-6.dll" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Enemies\Enemies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Players\Players.cpp">
@@ -33,16 +31,34 @@
     <ClCompile Include="src\Environment\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Enemies\Enemies.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock_Slinger_Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Swordsman\Swordsman_Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Enemies\Enemies.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Players\Players.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Environment\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Enemies\Enemies.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock_Slinger_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Swordsman\Swordsman_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\raylib.lib" />
   </ItemGroup>
 </Project>
