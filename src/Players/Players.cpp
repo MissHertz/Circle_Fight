@@ -2,6 +2,7 @@
 #include "../Circle_Fight/src/Environment/Environment.h"
 
 
+
 void Player::DrawPlayer(Color inPlayerColor)
 {
 	float playerSize = 20.f;

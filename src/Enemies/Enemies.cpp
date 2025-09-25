@@ -1,67 +1,66 @@
-//#include "Enemies.h"
-//#include "raylib.h"
-//#include <algorithm>
-//#include <cmath>
-//#include <vector>
-//#include "../Players/Players.h"
-//
-//struct Enemy {
-//	Rectangle rect;
-//
-//	int health;
-//
-//	int maxHealth;
-//
-//	float speed;
-//
-//	Enemy(float x, float y, float w, float h, int hp, float spd) {
-//		rect = { x, y, w, h };
-//		float enemySize1 = 25.f;
-//
-//		maxHealth = hp;
-//
-//		health = hp;
-//
-//		speed = spd;
-//	}
-//
-//	void Draw() {
-//		DrawRectangleRec(rect, RED);
-//
-//		DrawHealthBar();
-//	}
-//
-//	void DrawHealthBar() {
-//		float barWidth = rect.width;
-//
-//		float barHeight = 5;
-//
-//		Vector2 pos = { rect.x, rect.y - 10 };
-//
-//		DrawRectangleV(pos, { barWidth, barHeight }, RED);
-//
-//		float healthPercent = (float)health / maxHealth;
-//
-//		DrawRectangleV(pos, { barWidth * healthPercent, barHeight }, GREEN);
-//
-//		DrawRectangleLines(pos.x, pos.y, barWidth, barHeight, BLACK);
-//	}
-//
-//	void TakeDamage(int dmg) { health = std::max(0, health - dmg); }
-//
-//	bool IsAlive() { return health > 0; }
-//
-//	void Chase(Player& player) {
-//		float dx = player.rect.x - rect.x;
-//
-//		float dy = player.rect.y - rect.y;
-//
-//		float dist = sqrt(dx * dx + dy * dy);
-//
-//		if (dist > 0) {
-//			rect.x += speed * dx / dist;
-//
-//			rect.y += speed * dy / dist;
-//		}
-//	}
-//};
+#include "Enemies.h"
+
+// Constructor
+Enemy::Enemy(float x, float y, int hp, float r)
+{
+    enemyXPosition = x;
+    enemyYPosition = y;
+    health = hp;
+    maxHealth = hp;
+    radius = r;
+}
+
+// Draw enemy with health bar
+void Enemy::DrawEnemy(Color inEnemyColor)
+{
+    enemyColor = inEnemyColor;
+
+    // Enemy circle
+    DrawCircle(enemyXPosition, enemyYPosition, radius, enemyColor);
+
+    // Health bar background
+    float barWidth = radius * 2;
+    float barHeight = 5;
+    float barX = enemyXPosition - radius;
+    float barY = enemyYPosition - radius - 10;
+
+    DrawRectangle(barX, barY, barWidth, barHeight, GRAY);
+
+    // Current health portion
+    float healthPercent = (float)health / maxHealth;
+    DrawRectangle(barX, barY, barWidth * healthPercent, barHeight, GREEN);
+}
+
+
+void Enemy::UpdateEnemy(float targetX, float targetY)
+{
+    float speed = 100.0f * GetFrameTime();
+
+    float dx = targetX - enemyXPosition;
+    float dy = targetY - enemyYPosition;
+    float distance = sqrtf(dx * dx + dy * dy);
+
+    if (distance > 1.0f)
+    {
+        enemyXPosition += (dx / distance) * speed;
+        enemyYPosition += (dy / distance) * speed;
+    }
+}
+
+// Damage functions
+void Enemy::TakeDamage(int dmg)
+{
+    health -= dmg;
+    if (health < 0) health = 0;
+}
+
+void Enemy::Heal(int hp)
+{
+    health += hp;
+    if (health > maxHealth) health = maxHealth;
+}
+
+bool Enemy::IsAlive()
+{
+    return health > 0;
+}
