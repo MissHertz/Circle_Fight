@@ -34,9 +34,6 @@
     <ClCompile Include="src\Environment\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HealthBlock\healthblock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Enemies\Enemies.h">
@@ -46,9 +43,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Environment\Environment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\HealthBlock\healthblock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

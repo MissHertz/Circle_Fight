@@ -1,21 +1,42 @@
 #pragma once
-#include "raylib.h"
+#include <raylib.h>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <vector>
 
-class Player {
+class Player
+{
 public:
-    float playerXPosition;
-    float playerYPosition;
-    Color playerColor;
+    // Window dimensions
+    float windowWidth = 1800;
+    float windowHeight = 950;
+    float windowHalfWidth = windowWidth / 2;
+    float windowHalfHeight = windowHeight / 2;
 
-    int health;
-    int maxHealth;
-    float radius;
+    // Player properties
+    float playerXPosition = windowHalfWidth;
+    float playerYPosition = windowHalfHeight;
+    float radius = 20.0f;
 
-    Player(float x, float y, int hp = 100, float r = 20.0f);
+    Color playerColor{ WHITE };
 
+    // Health system
+    int health = 100;
+    int maxHealth = 100;
+
+    // Constructor
+    Player(float x, float y, int hp, float r);
+
+    // Drawing
     void DrawPlayer(Color inPlayerColor);
-    void PlayerController();   // WASD
-    void Player2Controller();  // Arrow keys
+
+    // Controllers
+    void PlayerController();
+    void Player2Controller();
+
+    // Health management
     void TakeDamage(int dmg);
     void Heal(int hp);
     bool IsAlive();

@@ -1,22 +1,36 @@
-
 #pragma once
-#include "raylib.h"
+#include <raylib.h>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <vector>
 
-#include <src/Players/Players.h>
-
-class Enemy {
+class Enemy
+{
 public:
-    float x, y;
-    float radius;
-    int health;
-    int maxHealth;
-    float speed;
-    bool alive;
+    // Enemy properties
+    float enemyXPosition;
+    float enemyYPosition;
+    float radius = 20.0f;
 
-    Enemy(float startX, float startY, float spd, int hp = 50, float r = 16.0f);
+    Color enemyColor{ RED };
 
-    void DrawEnemy();
-    void Chase(Player& player);
+    // Health system
+    int health = 50;
+    int maxHealth = 50;
+
+    // Constructor
+    Enemy(float x, float y, int hp, float r);
+
+    // Drawing
+    void DrawEnemy(Color inEnemyColor);
+
+    // Update (movement/AI placeholder)
+    void UpdateEnemy(float targetX, float targetY);
+
+    // Health management
     void TakeDamage(int dmg);
+    void Heal(int hp);
     bool IsAlive();
 };
