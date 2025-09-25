@@ -79,6 +79,9 @@ int main()
                 enemies.emplace_back(200, 200, 50, 20.0f);
                 enemies.emplace_back(500, 300, 50, 20.0f);
                 enemies.emplace_back(1400, 600, 50, 20.0f);
+                enemies.emplace_back(1600, 600, 50, 20.0f);
+                enemies.emplace_back(1800, 600, 50, 20.0f);
+
 
                 gameOver = false;
             }

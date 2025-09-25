@@ -31,7 +31,7 @@ void Enemy::DrawEnemy(Color inEnemyColor)
     DrawRectangle(barX, barY, barWidth * healthPercent, barHeight, GREEN);
 }
 
-// Simple enemy AI: moves slowly toward target (player position)
+
 void Enemy::UpdateEnemy(float targetX, float targetY)
 {
     float speed = 100.0f * GetFrameTime();
