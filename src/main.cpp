@@ -22,7 +22,7 @@ int main()
 	SetTargetFPS(60);
 
 	Environment Env;
-	Player Player1(Env);
+	Player Player1;
 	//Player Player2;
 
 	/*Environment Wall2;
@@ -64,7 +64,7 @@ int main()
 
 		//Player2.DrawPlayer2(RED);
 
-		Player1.PlayerController();
+		Player1.PlayerController(Env);
 
 		//Player2.Player2Controller();
 

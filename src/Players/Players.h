@@ -10,12 +10,6 @@
 class Player
 {
 public:
-	Environment ble;
-	
-	Player(const Environment& env) : ble(env)
-	{
-	
-	}
 
 
 	// Global Variables
@@ -41,7 +35,7 @@ public:
 	void DrawPlayer2(Color inPlayer2Color);
 
 	//functions
-	void PlayerController();
+	void PlayerController(Environment ble);
 
 	//bool IsPlayerInBounds()
 	//{
