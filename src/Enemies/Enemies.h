@@ -1,6 +1,7 @@
 //#pragma once
-#include "../Circle_Fight/src/Rock_Slinger/"
+
 #include "../Circle_Fight/src/Swordsman/Swordsman_Class.h"
+#include "../Circle_Fight/"
 //
 //class Enemies
 //{
