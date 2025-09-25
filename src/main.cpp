@@ -48,28 +48,28 @@ int main()
 
                         player.TakeDamage(0.5);
 
-                    }
                 }
-            }
-
-            // Player attack (press E)
-            if (IsKeyPressed(KEY_E))
-            {
-                for (auto& enemy : enemies)
-                {
-                    if (enemy.IsAlive() && IsColliding(player, enemy))
-                    {
-                        enemy.TakeDamage(30);
-                    }
-                }
-            }
-
-            if (!player.IsAlive())
-            {
-                gameOver = true;
             }
         }
-        else
+
+        // Player attack (press E)
+        if (IsKeyPressed(KEY_E))
+        {
+            for (auto& enemy : enemies)
+            {
+                if (enemy.IsAlive() && IsColliding(player, enemy))
+                {
+                    enemy.TakeDamage(30);
+                }
+            }
+        }
+
+        if (!player.IsAlive())
+        {
+            gameOver = true;
+        }
+    }
+    else
         {
             // Restart game when ENTER is pressed
             if (IsKeyPressed(KEY_ENTER))
@@ -118,8 +118,9 @@ int main()
         }
 
         EndDrawing();
-    }
 
-    CloseWindow();
-    return 0;
+
+   CloseWindow();
+   return 0;
 }
+
