@@ -5,10 +5,18 @@
 #include <algorithm>
 #include <cmath>
 #include <vector>
+#include "../Circle_Fight/src/Environment/Environment.h"
 
 class Player
 {
 public:
+	Environment ble;
+	
+	Player(Environment env)
+	{
+		ble = env;
+	}
+
 
 	// Global Variables
 	float windowWidth = 1800;
@@ -21,6 +29,9 @@ public:
 	float playerYPosition = windowHalfHeight - 27;
 	float player2XPosition = windowHalfWidth - 870;
 	float player2YPosition = windowHalfHeight + 27;
+	static Vector2 player1Centre; 
+	float playerSpeed = 150.f;
+	float collisionFix = 10.f;
 
 	Color playerColor{ WHITE };
 	Color player2color{ WHITE };
