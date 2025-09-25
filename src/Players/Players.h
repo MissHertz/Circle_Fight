@@ -6,9 +6,12 @@
 #include <cmath>
 #include <vector>
 
+class Environment;
+
 class Player
 {
 public:
+
 
 	// Global Variables
 	float windowWidth = 1800;
@@ -21,6 +24,9 @@ public:
 	float playerYPosition = windowHalfHeight - 27;
 	float player2XPosition = windowHalfWidth - 870;
 	float player2YPosition = windowHalfHeight + 27;
+	Vector2 player1Centre; 
+	float playerSpeed = 150.f;
+	float collisionFix = 10.f;
 
 	Color playerColor{ WHITE };
 	Color player2color{ WHITE };
@@ -30,7 +36,7 @@ public:
 	void DrawPlayer2(Color inPlayer2Color);
 
 	//functions
-	void PlayerController();
+	void PlayerController(Environment& ble);
 
 	//bool IsPlayerInBounds()
 	//{
