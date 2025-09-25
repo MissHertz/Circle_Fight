@@ -12,9 +12,9 @@ class Player
 public:
 	Environment ble;
 	
-	Player(Environment env)
+	Player(const Environment& env) : ble(env)
 	{
-		ble = env;
+	
 	}
 
 

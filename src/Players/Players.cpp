@@ -27,7 +27,7 @@ void Player::PlayerController()
 		if (IsKeyDown(KEY_LEFT_SHIFT))
 		{
 			playerXPosition -= playerSpeed * increasedplayerSpeed * GetFrameTime();
-			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true 
+			if (ble.checkWall_1 == true || ble.checkWall_2 == true || ble.checkWall_3 == true || ble.checkWall_4 == true || ble.checkWall_5 == true
 				|| ble.checkWall_6 == true || ble.checkWall_7 == true || ble.checkWall_8 == true || ble.checkWall_9 == true || ble.checkWall_10 == true 
 				|| ble.checkWall_11 == true || ble.checkWall_12 == true || ble.checkWall_13 == true || ble.checkWall_14 == true || ble.checkWall_15 == true 
 				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true 

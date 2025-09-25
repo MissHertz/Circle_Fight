@@ -38,8 +38,8 @@ public:
 	
 	// GLOBAL VARIABLES
 	// Wall variables
-	 bool checkWall_1;
-	static bool checkWall_2;
+	static bool checkWall_1;
+	bool checkWall_2;
 	 bool checkWall_3;
 	 bool checkWall_4;
 	 bool checkWall_5;
