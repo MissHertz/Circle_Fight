@@ -34,10 +34,10 @@
     <ClCompile Include="src\Enemies\Enemies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Players\Rock_throw\Rock_throw.cpp">
+    <ClCompile Include="Rock_Slinger_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Players\Sword_swing\Sword_swing.cpp">
+    <ClCompile Include="src\Swordsman\Swordsman_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,10 +51,10 @@
     <ClInclude Include="src\Enemies\Enemies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Players\Rock_throw\Rock_throw.h">
+    <ClInclude Include="Rock_Slinger_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Players\Sword_swing\Sword_swing.h">
+    <ClInclude Include="src\Swordsman\Swordsman_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

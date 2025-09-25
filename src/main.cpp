@@ -31,13 +31,13 @@ int main()
 
 		DrawFPS(10, 10);
 
-		Player1.DrawPlayer(YELLOW);
+		//Player1.DrawPlayer(YELLOW);
 
-		Player2.DrawPlayer2(RED);
+		//Player2.DrawPlayer2(RED);
 
-		Player1.PlayerController();
+		//Player1.PlayerController();
 
-		Player2.Player2Controller();
+		//Player2.Player2Controller();
 
 		EndDrawing();
 	}
