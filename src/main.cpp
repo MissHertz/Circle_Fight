@@ -147,12 +147,12 @@ int main()
 		
         if (!gameOver)
         {
-            player.DrawPlayer(WHITE);
+            player.DrawPlayer(YELLOW);
 
-            for (auto& enemy : enemies)
-            {
-                if (enemy.IsAlive())
-                    enemy.DrawEnemy(RED);
+			for (auto& enemy : enemies)
+			{
+				if (enemy.IsAlive())
+					enemy.DrawEnemy();
             }
 
             DrawText(TextFormat("Health: %d", player.health), 20, 20, 30, GREEN);
