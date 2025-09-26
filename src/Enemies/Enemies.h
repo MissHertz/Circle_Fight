@@ -14,7 +14,8 @@ public:
     float enemyYPosition;
     float radius = 20.0f;
 
-    Color enemyColor{ RED };
+    Color enemyColor = { 255, 255, 255, 200 };
+    Color inEnemyColor;
 
     // Health system
     int health = 50;
@@ -24,7 +25,7 @@ public:
     Enemy(float x, float y, int hp, float r);
 
     // Drawing
-    void DrawEnemy(Color inEnemyColor);
+    void DrawEnemy();
 
     // Enemy chase
     void UpdateEnemy(float targetX, float targetY);

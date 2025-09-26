@@ -11,9 +11,8 @@ Enemy::Enemy(float x, float y, int hp, float r)
 }
 
 // Draw enemy with health bar
-void Enemy::DrawEnemy(Color inEnemyColor)
+void Enemy::DrawEnemy()
 {
-    enemyColor = inEnemyColor;
 
     // Enemy circle
     DrawCircle(enemyXPosition, enemyYPosition, radius, enemyColor);
