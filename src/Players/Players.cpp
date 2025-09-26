@@ -2,6 +2,7 @@
 #include "../Circle_Fight/src/Environment/Environment.h"
 
 
+
 void Player::DrawPlayer(Color inPlayerColor)
 {
 	float playerSize = 20.f;
@@ -15,6 +16,32 @@ void Player::DrawPlayer2(Color inPlayer2Color)
 	player2color = inPlayer2Color;
 	DrawCircle(player2XPosition, player2YPosition, player2size, player2color);
 }
+
+Player::Player(float x, float y, int hp, float r)
+{
+	playerXPosition = x;
+    playerYPosition = y;
+	health = hp;
+	maxHealth = hp;
+	radius = r;
+}
+void Player::TakeDamage(float dmg)
+{
+    health -= dmg;
+    if (health < 0) health = 0;
+}
+
+void Player::Heal(int hp)
+{
+    health += hp;
+    if (health > maxHealth) health = maxHealth;
+}
+
+bool Player::IsAlive()
+{
+    return health > 0;
+}
+
 
 void Player::PlayerController(Environment& ble)
 {
@@ -64,7 +91,7 @@ void Player::PlayerController(Environment& ble)
 				playerXPosition += playerSpeed * GetFrameTime() + collisionFix;
 			}
 		}
-		player1Centre = { playerXPosition, playerYPosition };
+		playerCentre = { playerXPosition, playerYPosition };
 	}
 
 	if (IsKeyDown(KEY_D))
@@ -106,7 +133,7 @@ void Player::PlayerController(Environment& ble)
 				playerXPosition -= playerSpeed * GetFrameTime() + collisionFix;
 			}
 		}
-		player1Centre = { playerXPosition, playerYPosition };
+		playerCentre = { playerXPosition, playerYPosition };
 	}
 
 	if (IsKeyDown(KEY_W))
@@ -149,7 +176,7 @@ void Player::PlayerController(Environment& ble)
 				playerYPosition += playerSpeed * GetFrameTime() + collisionFix;
 			}
 		}
-		player1Centre = { playerXPosition, playerYPosition };
+		playerCentre = { playerXPosition, playerYPosition };
 	}
 
 	if (IsKeyDown(KEY_S))
@@ -191,7 +218,7 @@ void Player::PlayerController(Environment& ble)
 				playerYPosition -= playerSpeed * GetFrameTime() + collisionFix;
 			}
 		}
-		player1Centre = { playerXPosition, playerYPosition };
+		playerCentre = { playerXPosition, playerYPosition };
 	}
 }
 
