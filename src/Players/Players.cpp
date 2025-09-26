@@ -90,6 +90,10 @@ void Player::PlayerController(Environment& ble)
 			{
 				playerXPosition += playerSpeed * GetFrameTime() + collisionFix;
 			}
+			if (playerXPosition <= 0)
+			{
+				playerXPosition += playerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 		playerCentre = { playerXPosition, playerYPosition };
 	}
@@ -129,6 +133,10 @@ void Player::PlayerController(Environment& ble)
 				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
 				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
 				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				playerXPosition -= playerSpeed * GetFrameTime() + collisionFix;
+			}
+			if (playerXPosition >= windowWidth)
 			{
 				playerXPosition -= playerSpeed * GetFrameTime() + collisionFix;
 			}
@@ -175,6 +183,10 @@ void Player::PlayerController(Environment& ble)
 			{
 				playerYPosition += playerSpeed * GetFrameTime() + collisionFix;
 			}
+			if (playerYPosition <= 0)
+			{
+				playerYPosition += playerSpeed * GetFrameTime() + collisionFix;
+			}
 		}
 		playerCentre = { playerXPosition, playerYPosition };
 	}
@@ -214,6 +226,10 @@ void Player::PlayerController(Environment& ble)
 				|| ble.checkWall_16 == true || ble.checkWall_17 == true || ble.checkWall_18 == true || ble.checkWall_19 == true || ble.checkWall_20 == true
 				|| ble.checkWall_21 == true || ble.checkColumn_1 == true || ble.checkColumn_2 == true || ble.checkColumn_3 == true
 				|| ble.checkColumn_4 == true || ble.checkColumn_5 == true)
+			{
+				playerYPosition -= playerSpeed * GetFrameTime() + collisionFix;
+			}
+			if (playerYPosition >= windowHeight)
 			{
 				playerYPosition -= playerSpeed * GetFrameTime() + collisionFix;
 			}
