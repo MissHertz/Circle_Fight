@@ -12,7 +12,6 @@ class Player
 {
 public:
 
-
 	// Global Variables
 	float windowWidth = 1800;
 	float windowHeight = 950;
@@ -24,7 +23,7 @@ public:
 	float playerYPosition = windowHalfHeight - 27;
 	float player2XPosition = windowHalfWidth - 870;
 	float player2YPosition = windowHalfHeight + 27;
-	Vector2 playerCentre; 
+	Vector2 playerCentre;
 	float playerSpeed = 150.f;
 	float collisionFix = 10.f;
 	int health = 50;
@@ -32,6 +31,7 @@ public:
 	float radius = 20.0f;
 	Color playerColor{ WHITE };
 	Color player2color{ WHITE };
+	Color smashColor{ GRAY };
 
 	//constructor
 	void DrawPlayer(Color inPlayerColor);
@@ -39,6 +39,7 @@ public:
 	Player(float x, float y, int hp, float r);
 
 	//functions
+	void dealDamage(float damageDone);
 	void PlayerController(Environment& ble);
 
 	//bool IsPlayerInBounds()
