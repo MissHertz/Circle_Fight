@@ -15,12 +15,12 @@ float windowWidth = 1800;
 float windowHeight = 950;
 float windowHalfWidth = windowWidth / 2;
 float windowHalfHeight = windowHeight / 2;
-bool IsColliding(Player& p, Enemy& e)
+bool IsColliding(Vector2 p, float radius, Enemy& e)
 {
-	float dx = p.playerXPosition - e.enemyXPosition;
-	float dy = p.playerYPosition - e.enemyYPosition;
+	float dx = p.x - e.enemyXPosition;
+	float dy = p.y - e.enemyYPosition;
 	float distance = sqrtf(dx * dx + dy * dy);
-	return distance < p.radius + e.radius;
+	return distance < radius + e.radius;
 }
 
 int main()
@@ -59,7 +59,10 @@ int main()
 					enemy.UpdateEnemy(player.playerXPosition, player.playerYPosition);
 
 					// Enemy damages player on collision
-					if (IsColliding(player, enemy))
+					Vector2 p;
+					p.x = player.playerXPosition;
+					p.y = player.playerYPosition;
+					if (IsColliding(p, player.radius, enemy))
 					{
 						player.TakeDamage(1);
 					}
@@ -69,11 +72,20 @@ int main()
 			// Player attack (press E)
 			if (IsKeyPressed(KEY_E))
 			{
+				float smashRadius = 70.f;
+				Color smashColor = SKYBLUE;
+				float smashXlocation = player.playerXPosition;
+				float smashYlocation = player.playerYPosition;
+				DrawCircle(smashXlocation, smashYlocation, smashRadius, smashColor);
+				Vector2 p;
+				p.x = smashXlocation;
+				p.y = smashYlocation;
+
 				for (auto& enemy : enemies)
 				{
-					if (enemy.IsAlive() && IsColliding(player, enemy))
+					if (enemy.IsAlive() && IsColliding(p, smashRadius, enemy))
 					{
-						enemy.TakeDamage(20);
+						enemy.TakeDamage(8);
 					}
 				}
 			}
@@ -110,7 +122,7 @@ int main()
 
 		//Player2.DrawPlayer2(RED);
 
-		player.PlayerController(Env);
+		player.PlayerController(Env, enemies);
 
 		//Player2.Player2Controller();
 

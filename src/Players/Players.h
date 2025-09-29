@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include <vector>
+#include "../Circle_Fight/src/Enemies/Enemies.h"
 
 class Environment;
 
@@ -40,7 +41,7 @@ public:
 
 	//functions
 	void dealDamage(float damageDone);
-	void PlayerController(Environment& ble);
+	void PlayerController(Environment& ble, std::vector<Enemy>& enemies);
 
 	//bool IsPlayerInBounds()
 	//{

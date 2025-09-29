@@ -2,6 +2,8 @@
 #include "../Circle_Fight/src/Environment/Environment.h"
 #include "../Circle_Fight/src/Enemies/Enemies.h"
 
+bool IsColliding(Vector2 p, float radius, Enemy& e);
+
 void Player::DrawPlayer(Color inPlayerColor)
 {
 	float playerSize = 20.f;
@@ -47,7 +49,7 @@ void Player::dealDamage(float damageDone)
 	if (health < 0) health = 0;
 }
 
-void Player::PlayerController(Environment& ble)
+void Player::PlayerController(Environment& ble, std::vector<Enemy>& enemies)
 {
 	float playerSpeed = 280.f;
 	float increasedplayerSpeed = 1.4f;
@@ -105,11 +107,19 @@ void Player::PlayerController(Environment& ble)
 
 		if (IsKeyPressed(KEY_Q))
 		{
-			void Smash(Color rockColor);
+			float smashSize = 50.f;
+			smashColor = DARKGRAY;
+			Vector2 p;
+			p.x = smashXposition - 80;
+			p.y = smashYposition;
+			DrawCircle(smashXposition - 80, smashYposition, smashSize, smashColor);
+
+			for (auto& enemy : enemies)
 			{
-				float smashSize = 40.f;
-				smashColor = DARKGRAY;
-				DrawCircle(smashXposition - 80, smashYposition, smashSize, smashColor);
+				if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+				{
+					enemy.TakeDamage(25);
+				}
 			}
 		}
 	}
@@ -163,9 +173,20 @@ void Player::PlayerController(Environment& ble)
 		{
 			void Smash(Color rockColor);
 			{
-				float smashSize = 40.f;
+				float smashSize = 50.f;
 				smashColor = DARKGRAY;
+				Vector2 p;
+				p.x = smashXposition + 80;
+				p.y = smashYposition;
 				DrawCircle(smashXposition + 80, smashYposition, smashSize, smashColor);
+
+				for (auto& enemy : enemies)
+				{
+					if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+					{
+						enemy.TakeDamage(25);
+					}
+				}
 			}
 		}
 	}
@@ -218,11 +239,19 @@ void Player::PlayerController(Environment& ble)
 
 		if (IsKeyPressed(KEY_Q))
 		{
-			void Smash(Color rockColor);
+			float smashSize = 50.f;
+			smashColor = DARKGRAY;
+			Vector2 p;
+			p.x = smashXposition;
+			p.y = smashYposition - 80;
+			DrawCircle(smashXposition, smashYposition - 80, smashSize, smashColor);
+
+			for (auto& enemy : enemies)
 			{
-				float smashSize = 40.f;
-				smashColor = DARKGRAY;
-				DrawCircle(smashXposition, smashYposition - 80, smashSize, smashColor);
+				if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+				{
+					enemy.TakeDamage(25);
+				}
 			}
 		}
 	}
@@ -274,11 +303,19 @@ void Player::PlayerController(Environment& ble)
 
 		if (IsKeyPressed(KEY_Q))
 		{
-			void Smash(Color rockColor);
+			float smashSize = 50.f;
+			smashColor = DARKGRAY;
+			Vector2 p;
+			p.x = smashXposition;
+			p.y = smashYposition + 80;
+			DrawCircle(smashXposition, smashYposition + 80, smashSize, smashColor);
+
+			for (auto& enemy : enemies)
 			{
-				float smashSize = 40.f;
-				smashColor = DARKGRAY;
-				DrawCircle(smashXposition, smashYposition + 80, smashSize, smashColor);
+				if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+				{
+					enemy.TakeDamage(25);
+				}
 			}
 		}
 	}
