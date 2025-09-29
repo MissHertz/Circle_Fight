@@ -108,7 +108,7 @@ void Player::PlayerController(Environment& ble, std::vector<Enemy>& enemies)
 		if (IsKeyPressed(KEY_Q))
 		{
 			float smashSize = 50.f;
-			smashColor = DARKGRAY;
+			smashColor = SKYBLUE;
 			Vector2 p;
 			p.x = smashXposition - 80;
 			p.y = smashYposition;
