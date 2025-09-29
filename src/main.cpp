@@ -85,6 +85,7 @@ int main()
 				{
 					if (enemy.IsAlive() && IsColliding(p, smashRadius, enemy))
 					{
+
 						enemy.TakeDamage(8);
 					}
 				}
