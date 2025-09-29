@@ -85,8 +85,7 @@ int main()
 				{
 					if (enemy.IsAlive() && IsColliding(p, smashRadius, enemy))
 					{
-
-						enemy.TakeDamage(8);
+						enemy.TakeDamage(10);
 					}
 				}
 			}
@@ -167,7 +166,7 @@ int main()
 			}
 
 			DrawText(TextFormat("Health: %d", player.health), 20, 20, 30, GREEN);
-			DrawText("WASD = Move | E = Attack (must touch enemy)  |  Q = Smash", 20, 60, 20, LIGHTGRAY);
+			DrawText("WASD = Move | E = Ground Smash |  Q = Directional Smash", 20, 60, 20, LIGHTGRAY);
 		}
 		else
 		{
