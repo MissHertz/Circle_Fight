@@ -56,10 +56,6 @@
     <Library Include="lib\raylib.lib" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="RayLibSt.1b063d85\x64\Debug\Swordsman_Class.obj" />
-    <Object Include="RayLibSt.1b063d85\x64\Debug\Sword_swing.obj" />
-    <Object Include="RayLibSt.1b063d85\x64\Debug\Rock_throw.obj" />
-    <Object Include="RayLibSt.1b063d85\x64\Debug\Rock_Slinger_Class.obj" />
     <Object Include="RayLibSt.1b063d85\x64\Debug\Players.obj" />
     <Object Include="RayLibSt.1b063d85\x64\Debug\Environment.obj" />
     <Object Include="RayLibSt.1b063d85\x64\Debug\Enemies.obj" />
