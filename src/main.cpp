@@ -15,14 +15,13 @@ float windowWidth = 1800;
 float windowHeight = 950;
 float windowHalfWidth = windowWidth / 2;
 float windowHalfHeight = windowHeight / 2;
-bool IsColliding(Player& p, Enemy& e)
+bool IsColliding(Vector2 p, float radius, Enemy& e)
 {
-	float dx = p.playerXPosition - e.enemyXPosition;
-	float dy = p.playerYPosition - e.enemyYPosition;
+	float dx = p.x - e.enemyXPosition;
+	float dy = p.y - e.enemyYPosition;
 	float distance = sqrtf(dx * dx + dy * dy);
-	return distance < p.radius + e.radius;
+	return distance < radius + e.radius;
 }
-
 
 int main()
 {
@@ -43,7 +42,7 @@ int main()
 	bool gameOver = false;
 
 	Environment Env;
-	
+
 	//Player Player2;
 
 	while (!WindowShouldClose())
@@ -51,7 +50,7 @@ int main()
 		if (!gameOver)
 		{
 			// --- Update ---
-			void PlayerController(Environment& ble); // WASD controls
+			void PlayerController(Environment & ble); // WASD controls
 
 			for (auto& enemy : enemies)
 			{
@@ -60,7 +59,10 @@ int main()
 					enemy.UpdateEnemy(player.playerXPosition, player.playerYPosition);
 
 					// Enemy damages player on collision
-					if (IsColliding(player, enemy))
+					Vector2 p;
+					p.x = player.playerXPosition;
+					p.y = player.playerYPosition;
+					if (IsColliding(p, player.radius, enemy))
 					{
 						player.TakeDamage(1);
 					}
@@ -70,11 +72,21 @@ int main()
 			// Player attack (press E)
 			if (IsKeyPressed(KEY_E))
 			{
+				float smashRadius = 70.f;
+				Color smashColor = SKYBLUE;
+				float smashXlocation = player.playerXPosition;
+				float smashYlocation = player.playerYPosition;
+				DrawCircle(smashXlocation, smashYlocation, smashRadius, smashColor);
+				Vector2 p;
+				p.x = smashXlocation;
+				p.y = smashYlocation;
+
 				for (auto& enemy : enemies)
 				{
-					if (enemy.IsAlive() && IsColliding(player, enemy))
+					if (enemy.IsAlive() && IsColliding(p, smashRadius, enemy))
 					{
-						enemy.TakeDamage(25);
+
+						enemy.TakeDamage(8);
 					}
 				}
 			}
@@ -98,12 +110,11 @@ int main()
 				enemies.emplace_back(1600, 600, 50, 20.0f);
 				enemies.emplace_back(1800, 600, 50, 20.0f);
 
-
 				gameOver = false;
 			}
 		}
 		BeginDrawing();
-		
+
 		ClearBackground(BLACK);
 
 		DrawFPS(10, 10);
@@ -112,7 +123,7 @@ int main()
 
 		//Player2.DrawPlayer2(RED);
 
-		player.PlayerController(Env);
+		player.PlayerController(Env, enemies);
 
 		//Player2.Player2Controller();
 
@@ -144,36 +155,35 @@ int main()
 		Env.DrawColumn_3(player.playerCentre);
 		Env.DrawColumn_4(player.playerCentre);
 		Env.DrawColumn_5(player.playerCentre);
-		
-        if (!gameOver)
-        {
-            player.DrawPlayer(YELLOW);
+
+		if (!gameOver)
+		{
+			player.DrawPlayer(YELLOW);
 
 			for (auto& enemy : enemies)
 			{
 				if (enemy.IsAlive())
 					enemy.DrawEnemy();
-            }
+			}
 
-            DrawText(TextFormat("Health: %d", player.health), 20, 20, 30, GREEN);
-            DrawText("WASD = Move | E = Attack (must touch enemy)", 20, 60, 20, LIGHTGRAY);
-        }
-        else
-        {
-            const char* msg = "YOU DIED";
-            int fontSize = 100;
-            int textWidth = MeasureText(msg, fontSize);
-            DrawText(msg, (GetScreenWidth() - textWidth) / 2, GetScreenHeight() / 2 - 100, fontSize, RED);
+			DrawText(TextFormat("Health: %d", player.health), 20, 20, 30, GREEN);
+			DrawText("WASD = Move | E = Attack (must touch enemy)  |  Q = Smash", 20, 60, 20, LIGHTGRAY);
+		}
+		else
+		{
+			const char* msg = "YOU DIED";
+			int fontSize = 100;
+			int textWidth = MeasureText(msg, fontSize);
+			DrawText(msg, (GetScreenWidth() - textWidth) / 2, GetScreenHeight() / 2 - 100, fontSize, RED);
 
-            const char* restartMsg = "Press ENTER to play again";
-            int restartWidth = MeasureText(restartMsg, 40);
-            DrawText(restartMsg, (GetScreenWidth() - restartWidth) / 2, GetScreenHeight() / 2, 40, WHITE);
-        }
-
+			const char* restartMsg = "Press ENTER to play again";
+			int restartWidth = MeasureText(restartMsg, 40);
+			DrawText(restartMsg, (GetScreenWidth() - restartWidth) / 2, GetScreenHeight() / 2, 40, WHITE);
+		}
 
 		EndDrawing();
 	}
 
 	CloseWindow();
 	return 0;
-}   
+}

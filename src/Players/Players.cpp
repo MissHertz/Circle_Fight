@@ -1,7 +1,8 @@
 #include "Players.h"
 #include "../Circle_Fight/src/Environment/Environment.h"
+#include "../Circle_Fight/src/Enemies/Enemies.h"
 
-
+bool IsColliding(Vector2 p, float radius, Enemy& e);
 
 void Player::DrawPlayer(Color inPlayerColor)
 {
@@ -20,35 +21,42 @@ void Player::DrawPlayer2(Color inPlayer2Color)
 Player::Player(float x, float y, int hp, float r)
 {
 	playerXPosition = x;
-    playerYPosition = y;
+	playerYPosition = y;
 	health = hp;
 	maxHealth = hp;
 	radius = r;
 }
 void Player::TakeDamage(float dmg)
 {
-    health -= dmg;
-    if (health < 0) health = 0;
+	health -= dmg;
+	if (health < 0) health = 0;
 }
 
 void Player::Heal(int hp)
 {
-    health += hp;
-    if (health > maxHealth) health = maxHealth;
+	health += hp;
+	if (health > maxHealth) health = maxHealth;
 }
 
 bool Player::IsAlive()
 {
-    return health > 0;
+	return health > 0;
 }
 
+void Player::dealDamage(float damageDone)
+{
+	health -= damageDone;
+	if (health < 0) health = 0;
+}
 
-void Player::PlayerController(Environment& ble)
+void Player::PlayerController(Environment& ble, std::vector<Enemy>& enemies)
 {
 	float playerSpeed = 280.f;
 	float increasedplayerSpeed = 1.4f;
 	float reducedplayerSpeed = 0.5f;
 	float collisionFix = 10.f;
+	float smashXposition = playerXPosition;
+	float smashYposition = playerYPosition;
 
 	if (IsKeyDown(KEY_A))
 	{
@@ -96,6 +104,24 @@ void Player::PlayerController(Environment& ble)
 			}
 		}
 		playerCentre = { playerXPosition, playerYPosition };
+
+		if (IsKeyPressed(KEY_Q))
+		{
+			float smashSize = 50.f;
+			smashColor = DARKGRAY;
+			Vector2 p;
+			p.x = smashXposition - 80;
+			p.y = smashYposition;
+			DrawCircle(smashXposition - 80, smashYposition, smashSize, smashColor);
+
+			for (auto& enemy : enemies)
+			{
+				if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+				{
+					enemy.TakeDamage(25);
+				}
+			}
+		}
 	}
 
 	if (IsKeyDown(KEY_D))
@@ -142,6 +168,27 @@ void Player::PlayerController(Environment& ble)
 			}
 		}
 		playerCentre = { playerXPosition, playerYPosition };
+
+		if (IsKeyPressed(KEY_Q))
+		{
+			void Smash(Color rockColor);
+			{
+				float smashSize = 50.f;
+				smashColor = DARKGRAY;
+				Vector2 p;
+				p.x = smashXposition + 80;
+				p.y = smashYposition;
+				DrawCircle(smashXposition + 80, smashYposition, smashSize, smashColor);
+
+				for (auto& enemy : enemies)
+				{
+					if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+					{
+						enemy.TakeDamage(25);
+					}
+				}
+			}
+		}
 	}
 
 	if (IsKeyDown(KEY_W))
@@ -189,6 +236,24 @@ void Player::PlayerController(Environment& ble)
 			}
 		}
 		playerCentre = { playerXPosition, playerYPosition };
+
+		if (IsKeyPressed(KEY_Q))
+		{
+			float smashSize = 50.f;
+			smashColor = DARKGRAY;
+			Vector2 p;
+			p.x = smashXposition;
+			p.y = smashYposition - 80;
+			DrawCircle(smashXposition, smashYposition - 80, smashSize, smashColor);
+
+			for (auto& enemy : enemies)
+			{
+				if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+				{
+					enemy.TakeDamage(25);
+				}
+			}
+		}
 	}
 
 	if (IsKeyDown(KEY_S))
@@ -235,6 +300,24 @@ void Player::PlayerController(Environment& ble)
 			}
 		}
 		playerCentre = { playerXPosition, playerYPosition };
+
+		if (IsKeyPressed(KEY_Q))
+		{
+			float smashSize = 50.f;
+			smashColor = DARKGRAY;
+			Vector2 p;
+			p.x = smashXposition;
+			p.y = smashYposition + 80;
+			DrawCircle(smashXposition, smashYposition + 80, smashSize, smashColor);
+
+			for (auto& enemy : enemies)
+			{
+				if (enemy.IsAlive() && IsColliding(p, smashSize, enemy))
+				{
+					enemy.TakeDamage(25);
+				}
+			}
+		}
 	}
 }
 

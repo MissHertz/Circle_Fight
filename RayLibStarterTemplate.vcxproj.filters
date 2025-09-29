@@ -20,6 +20,12 @@
     <None Include="lib\libgcc_s_dw2-1.dll" />
     <None Include="lib\libstdc++-6.dll" />
     <None Include=".gitignore" />
+    <None Include="x64\Debug\RayLibStarterTemplateEmpty.pdb" />
+    <None Include="x64\Debug\RayLibStarterTemplateEmpty.exe" />
+    <None Include="RayLibSt.1b063d85\x64\Debug\vc143.pdb" />
+    <None Include="RayLibSt.1b063d85\x64\Debug\vc143.idb" />
+    <None Include="RayLibSt.1b063d85\x64\Debug\RayLibStarterTemplateEmpty.ilk" />
+    <None Include="RayLibSt.1b063d85\x64\Debug\RayLibStarterTemplateEmpty.exe.recipe" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -34,10 +40,10 @@
     <ClCompile Include="src\Enemies\Enemies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rock_Slinger_Class.cpp">
+    <ClCompile Include="src\Swordsman\Swordsman_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Swordsman\Swordsman_Class.cpp">
+    <ClCompile Include="src\Rock_Slinger\Rock_Slinger_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,14 +57,26 @@
     <ClInclude Include="src\Enemies\Enemies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rock_Slinger_Class.h">
+    <ClInclude Include="src\Swordsman\Swordsman_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Swordsman\Swordsman_Class.h">
+    <ClInclude Include="src\Rock_Slinger\Rock_Slinger_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\raylib.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Swordsman_Class.obj" />
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Sword_swing.obj" />
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Rock_throw.obj" />
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Rock_Slinger_Class.obj" />
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Players.obj" />
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Environment.obj" />
+    <Object Include="RayLibSt.1b063d85\x64\Debug\Enemies.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="RayLibSt.1b063d85\x64\Debug\RayLibStarterTemplate.log" />
   </ItemGroup>
 </Project>
