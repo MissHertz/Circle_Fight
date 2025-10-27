@@ -1,179 +1,321 @@
-#include <algorithm>
+#include "raylib.h"
 #include <cmath>
-#include <iostream>
-#include <math.h>
-#include <random>
-#include <raylib.h>
-#include <string>
 #include <vector>
-#include "Players/Players.h"
-#include "Environment/Environment.h"
-#include "src/Enemies/Enemies.h"
+#include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <string>
+#include <sstream>
 
-// Global Variables
-float windowWidth = 1800;
-float windowHeight = 950;
-float windowHalfWidth = windowWidth / 2;
-float windowHalfHeight = windowHeight / 2;
-bool IsColliding(Player& p, Enemy& e)
-{
-	float dx = p.playerXPosition - e.enemyXPosition;
-	float dy = p.playerYPosition - e.enemyYPosition;
-	float distance = sqrtf(dx * dx + dy * dy);
-	return distance < p.radius + e.radius;
+// --- Math Utilities ---
+namespace MathUtils {
+    inline float clamp(float v, float a, float b) { return (v < a) ? a : (v > b) ? b : v; }
+    inline float length(const Vector2& v) { return std::sqrt(v.x * v.x + v.y * v.y); }
 }
 
+// --- Adjustable Screen System ---
+const int BASE_WIDTH = 1280;
+const int BASE_HEIGHT = 720;
 
-int main()
-{
-	InitWindow(windowWidth, windowHeight, "Circle Fight!");
+// --- Platform Class ---
+struct Platform {
+    Rectangle rect;
+    Color color;
+    Platform(float x, float y, float w, float h, Color c)
+        : rect{ x, y, w, h }, color(c) {
+    }
+    void Draw() const { DrawRectangleRec(rect, color); }
+};
 
-	SetTargetFPS(60);
-	// Create player
-	Player player(900, 475, 100, 20.0f);
+// --- Enemy Class ---
+struct Enemy {
+    Vector2 pos;
+    Vector2 vel;
+    float radius = 20;
+    bool alive = true;
+    float gravity = 900.0f;
+    int currentPlatform = 0;
+    bool rollingRight = false;
 
-	// Create multiple enemies
-	std::vector<Enemy> enemies;
-	enemies.emplace_back(200, 200, 50, 20.0f);
-	enemies.emplace_back(500, 300, 50, 20.0f);
-	enemies.emplace_back(1400, 600, 50, 20.0f);
-	enemies.emplace_back(1600, 600, 50, 20.0f);
-	enemies.emplace_back(1800, 600, 50, 20.0f);
+    Enemy(const std::vector<Platform>& plats) {
+        currentPlatform = (int)plats.size() - 1; // top platform
+        const auto& top = plats[currentPlatform];
+        pos = { top.rect.x + top.rect.width - radius, top.rect.y - radius * 2 };
+        vel = { -100, 0 };
+        rollingRight = false;
+    }
 
-	bool gameOver = false;
+    void Update(float dt, const std::vector<Platform>& plats) {
+        if (!alive) return;
 
-	Environment Env;
-	
-	//Player Player2;
+        pos.x += vel.x * dt;
+        vel.y += gravity * dt;
+        pos.y += vel.y * dt;
 
-	while (!WindowShouldClose())
-	{
-		if (!gameOver)
-		{
-			// --- Update ---
-			void PlayerController(Environment& ble); // WASD controls
+        const auto& plat = plats[currentPlatform];
 
-			for (auto& enemy : enemies)
-			{
-				if (enemy.IsAlive())
-				{
-					enemy.UpdateEnemy(player.playerXPosition, player.playerYPosition);
+        if (CheckCollisionCircleRec(pos, radius, plat.rect)) {
+            pos.y = plat.rect.y - radius;
+            vel.y = 0;
 
-					// Enemy damages player on collision
-					if (IsColliding(player, enemy))
-					{
-						player.TakeDamage(1);
-					}
-				}
-			}
+            if ((!rollingRight && pos.x - radius <= plat.rect.x) ||
+                (rollingRight && pos.x + radius >= plat.rect.x + plat.rect.width)) {
+                if (currentPlatform > 0) {
+                    currentPlatform--;
+                    rollingRight = !rollingRight;
+                    vel.x = (rollingRight ? 100 : -100);
+                }
+                else {
+                    alive = false;
+                }
+            }
+        }
 
-			// Player attack (press E)
-			if (IsKeyPressed(KEY_E))
-			{
-				for (auto& enemy : enemies)
-				{
-					if (enemy.IsAlive() && IsColliding(player, enemy))
-					{
-						enemy.TakeDamage(25);
-					}
-				}
-			}
+        pos.x = MathUtils::clamp(pos.x, radius, (float)BASE_WIDTH - radius);
+    }
 
-			if (!player.IsAlive())
-			{
-				gameOver = true;
-			}
-		}
-		else
-		{
-			// Restart game when ENTER is pressed
-			if (IsKeyPressed(KEY_ENTER))
-			{
-				player = Player(900, 475, 100, 20.0f); // reset player
+    void Draw() const { if (alive) DrawCircleV(pos, radius, RED); }
+};
 
-				enemies.clear(); // reset enemies
-				enemies.emplace_back(200, 200, 50, 20.0f);
-				enemies.emplace_back(500, 300, 50, 20.0f);
-				enemies.emplace_back(1400, 600, 50, 20.0f);
-				enemies.emplace_back(1600, 600, 50, 20.0f);
-				enemies.emplace_back(1800, 600, 50, 20.0f);
+// --- Player Class ---
+struct Player {
+    Vector2 pos;
+    Vector2 vel;
+    float width = 30;
+    float height = 40;
+    float gravity = 1000.0f;
+    float moveSpeed = 250.0f;
+    float jumpVel = 500.0f;
+    bool grounded = false;
+    int health = 100;
 
+    Player(float x, float y) { pos = { x, y }; vel = { 0, 0 }; }
 
-				gameOver = false;
-			}
-		}
-		BeginDrawing();
-		
-		ClearBackground(BLACK);
+    Rectangle getRect() const { return { pos.x, pos.y, width, height }; }
 
-		DrawFPS(10, 10);
+    void Update(float dt, const std::vector<Platform>& platforms) {
+        float dir = 0.0f;
+        if (IsKeyDown(KEY_A)) dir -= 1.0f;
+        if (IsKeyDown(KEY_D)) dir += 1.0f;
+        vel.x = dir * moveSpeed;
 
-		player.DrawPlayer(YELLOW);
+        vel.y += gravity * dt;
 
-		//Player2.DrawPlayer2(RED);
+        if ((IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_W)) && grounded) {
+            vel.y = -jumpVel;
+            grounded = false;
+        }
 
-		player.PlayerController(Env);
+        pos.x += vel.x * dt;
+        pos.y += vel.y * dt;
 
-		//Player2.Player2Controller();
+        grounded = false;
+        Rectangle r = getRect();
 
-		// Draw Walls and columns
-		Env.DrawWall_1(player.playerCentre);
-		Env.DrawWall_2(player.playerCentre);
-		Env.DrawWall_3(player.playerCentre);
-		Env.DrawWall_4(player.playerCentre);
-		Env.DrawWall_5(player.playerCentre);
-		Env.DrawWall_6(player.playerCentre);
-		Env.DrawWall_7(player.playerCentre);
-		Env.DrawWall_8(player.playerCentre);
-		Env.DrawWall_9(player.playerCentre);
-		Env.DrawWall_10(player.playerCentre);
-		Env.DrawWall_11(player.playerCentre);
-		Env.DrawWall_12(player.playerCentre);
-		Env.DrawWall_13(player.playerCentre);
-		Env.DrawWall_14(player.playerCentre);
-		Env.DrawWall_15(player.playerCentre);
-		Env.DrawWall_16(player.playerCentre);
-		Env.DrawWall_17(player.playerCentre);
-		Env.DrawWall_18(player.playerCentre);
-		Env.DrawWall_19(player.playerCentre);
-		Env.DrawWall_20(player.playerCentre);
-		Env.DrawWall_21(player.playerCentre);
+        for (const auto& plat : platforms) {
+            if (CheckCollisionRecs(r, plat.rect)) {
+                pos.y = plat.rect.y - height;
+                vel.y = 0;
+                grounded = true;
+                r = getRect();
+            }
+        }
 
-		Env.DrawColumn_1(player.playerCentre);
-		Env.DrawColumn_2(player.playerCentre);
-		Env.DrawColumn_3(player.playerCentre);
-		Env.DrawColumn_4(player.playerCentre);
-		Env.DrawColumn_5(player.playerCentre);
-		
-        if (!gameOver)
-        {
-            player.DrawPlayer(WHITE);
+        pos.x = MathUtils::clamp(pos.x, 0.0f, (float)BASE_WIDTH - width);
+        if (pos.y > BASE_HEIGHT) health = 0;
+    }
 
-            for (auto& enemy : enemies)
-            {
-                if (enemy.IsAlive())
-                    enemy.DrawEnemy(RED);
+    void Draw() const { DrawRectangleV(pos, { width, height }, BLUE); }
+};
+
+// --- Score System ---
+struct ScoreManager {
+    std::string playerName;
+    int score = 0;
+
+    struct Entry {
+        std::string name;
+        int score;
+    };
+    std::vector<Entry> highScores;
+
+    void LoadHighScores() {
+        highScores.clear();
+        std::ifstream file("scores.txt");
+        std::string line;
+        while (std::getline(file, line)) {
+            std::stringstream ss(line);
+            std::string name;
+            int s;
+            ss >> name >> s;
+            highScores.push_back({ name, s });
+        }
+    }
+
+    void SaveHighScore() {
+        highScores.push_back({ playerName, score });
+        std::sort(highScores.begin(), highScores.end(), [](const Entry& a, const Entry& b) {
+            return a.score > b.score;
+            });
+        if (highScores.size() > 5) highScores.resize(5);
+
+        std::ofstream file("scores.txt");
+        for (auto& e : highScores) {
+            file << e.name << " " << e.score << "\n";
+        }
+    }
+
+    int GetTopScore() const {
+        return highScores.empty() ? 0 : highScores[0].score;
+    }
+};
+
+// --- Game States ---
+enum GameState { MENU, GAME, GAME_OVER };
+
+int main() {
+    InitWindow(BASE_WIDTH, BASE_HEIGHT, "Kong Mario");
+    SetTargetFPS(60);
+    RenderTexture2D target = LoadRenderTexture(BASE_WIDTH, BASE_HEIGHT);
+
+    std::vector<Platform> platforms = {
+        {0, 680, 1280, 40, DARKGRAY},
+        {150, 550, 300, 20, GRAY},
+        {500, 450, 350, 20, GRAY},
+        {900, 350, 300, 20, GRAY},
+        {300, 250, 300, 20, GRAY}
+    };
+
+    ScoreManager scoreManager;
+    scoreManager.LoadHighScores();
+
+    GameState state = MENU;
+    char nameBuffer[32] = "";
+    int letterCount = 0;
+
+    Player player(100, 600);
+    std::vector<Enemy> enemies;
+    float enemyTimer = 0;
+    float scoreTimer = 0;
+
+    while (!WindowShouldClose()) {
+        float dt = GetFrameTime();
+
+        if (state == MENU) {
+            // Name input
+            int key = GetCharPressed();
+            while (key > 0) {
+                if (letterCount < 31 && key >= 32 && key <= 125) {
+                    nameBuffer[letterCount] = (char)key;
+                    letterCount++;
+                    nameBuffer[letterCount] = '\0';
+                }
+                key = GetCharPressed();
             }
 
-            DrawText(TextFormat("Health: %d", player.health), 20, 20, 30, GREEN);
-            DrawText("WASD = Move | E = Attack (must touch enemy)", 20, 60, 20, LIGHTGRAY);
+            if (IsKeyPressed(KEY_BACKSPACE) && letterCount > 0) {
+                letterCount--;
+                nameBuffer[letterCount] = '\0';
+            }
+
+            if (IsKeyPressed(KEY_ENTER) && letterCount > 0) {
+                scoreManager.playerName = nameBuffer;
+                state = GAME;
+                player = Player(100, 600);
+                enemies.clear();
+                enemyTimer = 0;
+                scoreTimer = 0;
+                scoreManager.score = 0;
+            }
         }
-        else
-        {
-            const char* msg = "YOU DIED";
-            int fontSize = 100;
-            int textWidth = MeasureText(msg, fontSize);
-            DrawText(msg, (GetScreenWidth() - textWidth) / 2, GetScreenHeight() / 2 - 100, fontSize, RED);
 
-            const char* restartMsg = "Press ENTER to play again";
-            int restartWidth = MeasureText(restartMsg, 40);
-            DrawText(restartMsg, (GetScreenWidth() - restartWidth) / 2, GetScreenHeight() / 2, 40, WHITE);
+        else if (state == GAME) {
+            player.Update(dt, platforms);
+            enemyTimer += dt;
+            scoreTimer += dt;
+
+            if (enemyTimer > 3.0f) {
+                enemyTimer = 0;
+                enemies.emplace_back(platforms);
+            }
+
+            for (auto& e : enemies)
+                e.Update(dt, platforms);
+
+            enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
+                [](const Enemy& e) {return !e.alive;}), enemies.end());
+
+            for (auto& e : enemies)
+                if (CheckCollisionCircleRec(e.pos, e.radius, player.getRect()))
+                    player.health -= 1;
+
+            if (scoreTimer > 1.0f) {
+                scoreManager.score += 10;
+                scoreTimer = 0;
+            }
+
+            if (player.health <= 0) {
+                scoreManager.SaveHighScore();
+                state = GAME_OVER;
+            }
         }
 
+        else if (state == GAME_OVER) {
+            if (IsKeyPressed(KEY_ENTER)) {
+                state = MENU;
+                letterCount = 0;
+                nameBuffer[0] = '\0';
+                scoreManager.LoadHighScores();
+            }
+        }
 
-		EndDrawing();
-	}
+        // --- Drawing ---
+        BeginTextureMode(target);
+        ClearBackground(BLACK);
 
-	CloseWindow();
-	return 0;
-}   
+        if (state == MENU) {
+            DrawText("KONG MARIO", 480, 150, 60, YELLOW);
+            DrawText("Enter your name:", 460, 300, 30, WHITE);
+            DrawText(nameBuffer, 460, 350, 40, LIGHTGRAY);
+            DrawText("Press [ENTER] to start", 460, 450, 25, GRAY);
+            DrawText("High Scores:", 460, 500, 25, GREEN);
+            for (size_t i = 0; i < scoreManager.highScores.size(); ++i) {
+                DrawText(TextFormat("%s %d", scoreManager.highScores[i].name.c_str(),
+                    scoreManager.highScores[i].score),
+                    460, 530 + i * 30, 25, WHITE);
+            }
+        }
+
+        else if (state == GAME) {
+            for (auto& p : platforms) p.Draw();
+            for (auto& e : enemies) e.Draw();
+            player.Draw();
+            DrawText(TextFormat("Health: %i", player.health), 20, 20, 30, WHITE);
+            DrawText(TextFormat("Score: %i", scoreManager.score), 20, 60, 30, YELLOW);
+            DrawText(TextFormat("Top Score: %i", scoreManager.GetTopScore()), 20, 100, 25, GREEN);
+        }
+
+        else if (state == GAME_OVER) {
+            DrawText("GAME OVER!", 520, 250, 60, RED);
+            DrawText(TextFormat("Your Score: %d", scoreManager.score), 520, 350, 30, WHITE);
+            DrawText("High Scores:", 520, 390, 30, GREEN);
+            for (size_t i = 0; i < scoreManager.highScores.size(); ++i) {
+                DrawText(TextFormat("%s %d", scoreManager.highScores[i].name.c_str(),
+                    scoreManager.highScores[i].score),
+                    520, 430 + i * 30, 25, WHITE);
+            }
+            DrawText("Press [ENTER] to return to menu", 460, 550, 25, GRAY);
+        }
+
+        EndTextureMode();
+
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTexturePro(target.texture,
+            { 0,0,(float)target.texture.width,-(float)target.texture.height },
+            { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() },
+            { 0,0 }, 0.0f, WHITE);
+        EndDrawing();
+    }
+
+    Unload
