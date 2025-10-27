@@ -74,7 +74,7 @@ int main()
 				{
 					if (enemy.IsAlive() && IsColliding(player, enemy))
 					{
-						enemy.TakeDamage(20);
+						enemy.TakeDamage(25);
 					}
 				}
 			}

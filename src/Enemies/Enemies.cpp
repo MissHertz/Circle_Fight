@@ -48,7 +48,7 @@ void Enemy::UpdateEnemy(float targetX, float targetY)
 }
 
 // Damage functions
-void Enemy::TakeDamage(int dmg)
+void Enemy::TakeDamage(float dmg)
 {
     health -= dmg;
     if (health < 0) health = 0;

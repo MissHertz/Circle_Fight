@@ -30,7 +30,7 @@ public:
     void UpdateEnemy(float targetX, float targetY);
 
     // Health management
-    void TakeDamage(int dmg);
+    void TakeDamage(float dmg);
     void Heal(int hp);
     bool IsAlive();
 };

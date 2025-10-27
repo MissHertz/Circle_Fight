@@ -25,7 +25,7 @@ Player::Player(float x, float y, int hp, float r)
 	maxHealth = hp;
 	radius = r;
 }
-void Player::TakeDamage(float dmg)
+void Player::TakeDamage(int dmg)
 {
     health -= dmg;
     if (health < 0) health = 0;

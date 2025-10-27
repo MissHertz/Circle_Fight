@@ -61,7 +61,7 @@ public:
 	//		return within2XBounds && within2YBounds;
 	//	}
 	//};
-	void TakeDamage(float dmg);
+	void TakeDamage(int dmg);
 	void Heal(int hp);
 	bool IsAlive();
 };
